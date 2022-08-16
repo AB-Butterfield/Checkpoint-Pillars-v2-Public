@@ -8,7 +8,7 @@ const {
 const _app = require('../../server/app');
 const app = require('supertest')(_app);
 
-describe('Tier 4: POST Routes, Request Body', () => {
+describe.only('Tier 4: POST Routes, Request Body', () => {
   describe('Express', () => {
     let users;
 

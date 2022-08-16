@@ -8,7 +8,7 @@ const {
 const _app = require('../../server/app');
 const app = require('supertest')(_app);
 
-describe.only('Tier 2: Eager Loading, One-To-Many Associations', () => {
+describe('Tier 2: Eager Loading, One-To-Many Associations', () => {
   beforeEach(async () => {
     await db.sync({ force: true });
     const _users = await User.bulkCreate(

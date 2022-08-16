@@ -30,40 +30,39 @@ router.get('/teachers', async (req, res) => {
 })
 
 //NOT COMPLETE!!
-router.put('/users/:id', async (req,res) => {
-  let findUser = User.findAll({where: {id:req.params.id}})
-  if (findUser === undefined){
-    res.sendStatus(404)
-  } else {
-    res.status(200).send(findUser)
+/*router.put('/users/:id', async (req,res,next) => {
+  try {
+    let findUser = User.findOne({where: {id:req.params.id}})
+  console.log(findUser)
+  //res.send(findUser)
+  } catch(error) {
+    next(error)
   }
-})
+})*/
 
 
 //NOT COMPLETE!!
-router.post('/users', async (req, res) => {
-  let newUser = req.body.name
-  let userCheck = await User.findAll({where: {name: newUser}})
-  console.log(userCheck)
-  if (userCheck) {
+router.post('/', async (req, res) => {
+  let newUser = req.body
+  let userCheck = await User.findAll({where: {name: newUser.name}})
+  if (userCheck.name === newUser.name) {
     res.sendStatus(409)
   } else {
-    res.status(201).send(newUser)
+    User.add
+    res.sendStatus(201)
   }
 
 })
 
 //NOT COMPLETE!!!
 router.delete('/:id', async (req, res, next) => {
-  let curUser = await User.findAll({where: {id: req.params.id}})
-  next()
-  if (curUser === false){
-    res.sendStatus(404)
-  }
-  if (curUser.id !== req.params.id) {
-    res.sendStatus(400)
-  } else {
-    res.status(204).send(curUser)
+  try{
+    let curUser = await User.findAll({where: {id: req.params.id}})
+  console.log(curUser)
+  res.status(204).send(curUser)
+}
+  catch (err){
+    next(err)
   }
 })
 
